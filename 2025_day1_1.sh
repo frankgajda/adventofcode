@@ -7,7 +7,7 @@ zero=0
 # Debug?
 debug=0
 
-for i in `cat list`
+for i in `cat data_day1`
 do
   # get direction left or right - first letter
   direction=${i:0:1}
