@@ -8,7 +8,7 @@ zero=0
 # Debug?
 debug=0
 
-for i in `cat data_day1`
+while read i 
 do
   # get direction left or right - first letter
   direction=${i:0:1}
@@ -58,5 +58,7 @@ do
   echo "Pointer: " ${pointer}
   echo "Zero count: " ${zero}
   fi
-done
+done < data_day1
+
+# output total number of zeroes
 echo "Zero count: " ${zero}

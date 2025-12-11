@@ -13,7 +13,8 @@ zeroes=0
 debug=0
 
 # do stuff:
-for i in `cat data_day1`
+#for i in `cat data_day1`
+while read i 
 do
 
   # get direction left or right - first letter L or R
@@ -47,7 +48,7 @@ do
       ((zeroes++))
     fi
   done
-done
+done < data_day1
 
 # output total count of zeroes
 echo "Zeroes: " ${zeroes}
