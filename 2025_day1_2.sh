@@ -1,11 +1,15 @@
 #!/bin/bash
+# adventofcode day1 task 2
+#
+# tried a lot of "clever" applroached that did not
+# pan out - so ended up checking every click for "zeroes"
 
 # start at posistion 50
 dial=50
 # init zero count
 zeroes=0
 
-# Debug?
+# debug?
 debug=0
 
 # do stuff:

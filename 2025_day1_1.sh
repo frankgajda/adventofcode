@@ -1,4 +1,5 @@
 #!/bin/bash
+# adventofcode day1 task 1 
 
 # start at posistion 50
 pointer=50
