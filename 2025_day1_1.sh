@@ -11,23 +11,31 @@ for i in `cat data_day1`
 do
   # get direction left or right - first letter
   direction=${i:0:1}
+
   # get number of clicks - rest of string
-  change=${i:1}
-  # sanitize
-  let change="$(( ${i:1}  % 100 ))"
+  clickse=${i:1}
+
+  # simplify - lets get rid of "hundreds"
+  let clicks="$(( ${i:1}  % 100 ))"
+
   # debug
   if [ ${debug} -gt "0" ]
   then
     echo "Direction: " ${direction}
-    echo "Change: " ${change}
+    echo "Change: " ${clicks}
   fi
+
   # do stuff
+  # if CCW, add 100 to pointer position and subtract rotation (clicks)
   if [ ${direction} == "L" ]
   then
-    let pointer="(100 - ${change}) + ${pointer}"
+    let pointer=$(((100 + ${pointer}) - ${clicks}))
+  # if CW just add rotation to pointer position
   else
-    let pointer="${change} + ${pointer}"
+    let pointer="${clicks} + ${pointer}"
   fi
+  
+  # strip the "hundreds" - we don't want them!
   if [ ${pointer} -gt 99 ]
   then
     if [ ${debug} -gt "0" ]
@@ -37,10 +45,13 @@ do
       let pointer="$((${pointer} % 100 ))"
   fi
 
+  # count zeroes
   if [ ${pointer} -eq 0 ]
   then
-    let zero="${zero} + 1"
+    ((zero++))
   fi
+  
+  # debug
   if [ ${debug} -gt "0" ]
   then
   echo "Pointer: " ${pointer}

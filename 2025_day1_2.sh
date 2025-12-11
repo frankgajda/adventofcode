@@ -6,23 +6,26 @@ dial=50
 zeroes=0
 
 # Debug?
-debug=1
+debug=0
 
 # do stuff:
 for i in `cat data_day1`
 do
 
-  # get direction left or right - first letter
+  # get direction left or right - first letter L or R
   dir=${i:0:1}
 
   # get number of clicks - rest of string
   clicks=${i:1}
 
+  # debug
   if [ ${debug} -gt 0 ]
   then
   echo "Direction: " ${dir}
   echo "Clicks: " ${clicks}
   fi
+
+  # now, spin the bloody wheel!
   for ((a = 0; a < $clicks; ++a))
   do
     if [ ${dir} == "L" ]
@@ -42,4 +45,5 @@ do
   done
 done
 
+# output total count of zeroes
 echo "Zeroes: " ${zeroes}
