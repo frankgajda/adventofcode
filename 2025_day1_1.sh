@@ -8,15 +8,16 @@ zero=0
 # Debug?
 debug=0
 
+# get data line by line and do stuff
 while read i 
 do
   # get direction left or right - first letter
   direction=${i:0:1}
 
   # get number of clicks - rest of string
-  clickse=${i:1}
+  # clicks=${i:1}
 
-  # simplify - lets get rid of "hundreds"
+  # simplify - get clicks but lets get rid of "hundreds". We don't need them
   let clicks="$(( ${i:1}  % 100 ))"
 
   # debug
