@@ -1,9 +1,13 @@
 #!/bin/bash
 count=0
+debug=0
 
 # split comma sparated data from file into an array
 while IFS=',' read -r -a array; do
-  echo "Data: " ${array[@]}
+  
+  if ((debug)); then
+    echo "Data: " ${array[@]}
+  fi
 
   # load span limits into array
   for span in ${array[@]}; do
@@ -23,7 +27,8 @@ while IFS=',' read -r -a array; do
 
         # check if first half and last half match - if so, add ID to total sum
         if [ ${first} -eq ${last} ]; then
-          let count="${num} + ${count}"
+          echo "Invalid ID: "${num}
+          ((count+=${num}))
         fi
       fi
     done
