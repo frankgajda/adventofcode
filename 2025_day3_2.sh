@@ -32,7 +32,7 @@ get-number() {
     return 0  
   fi
   
-  # try numbers from 9 down to 1 - in posistions
+  # try numbers from 9 down to 1 
   for b in $(seq 9 -1 1); do
     
     for((c = 0; c <= length - ${pos}; c++)); do
