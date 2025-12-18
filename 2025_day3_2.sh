@@ -14,6 +14,8 @@ get-max() {
   for((a=0; a < length; a++)); do
     bankarr+=("${bank:${a}:1}")
   done
+
+  # put get-number to work and retrieve the number
   get-number "${pos}" "${bankarr[@]}"
 }
 
@@ -39,7 +41,9 @@ get-number() {
     
       if (( ${bankarr[${c}]} == ${b} )); then 
         echo -n ${b} 
-        echo "got ${b} at pos ${c}. Grab!" >&2
+        if((debug)); then
+          echo "got ${b} at pos ${c}. Grab!" >&2
+        fi
         new_pos=$((${c} +1 ))
         get-number "$(($pos - 1))" "${bankarr[@]:${new_pos}}"
         return 0 
@@ -52,8 +56,10 @@ total=0
 debug=0
 line=1
 while read bank; do
-  echo "-----" >&2
-  echo "Bank: " $line >&2
+  if((debug)); then
+    echo "-----" >&2
+    echo "Bank: " $line >&2
+  fi
   number=$(get-max "$bank")
   echo "Bank num: "${number} >&2
   (( total += number))
